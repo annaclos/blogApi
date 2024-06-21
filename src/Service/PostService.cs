@@ -1,6 +1,7 @@
 ﻿using BLOGAPI.Model.Data;
 using BLOGAPI.src.Contracts.Repository;
 using BLOGAPI.src.Contracts.Service;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLOGAPI.src.Service
 {
@@ -18,6 +19,9 @@ namespace BLOGAPI.src.Service
 
             if (string.IsNullOrEmpty(post.Conteudo))
                 throw new Exception("O Conteúdo é obrigatório.");
+
+            if (post.Titulo.Length < 30 || post.Titulo.Length > 60)
+                throw new Exception("O título deve ter entre 30 e 60 caracteres!");
 
             return await _repository.Create(post);
 

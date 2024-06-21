@@ -35,7 +35,7 @@ namespace BLOGAPI.Controllers
 
             try
             {
-                return Ok(_categoria.Get(Id));
+                return Ok(await _categoria.Get(Id));
             }
             catch (Exception e)
             {
@@ -71,7 +71,7 @@ namespace BLOGAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpPut]
+        [HttpPut("{Id}")]
         public async Task<ActionResult> Update([FromBody] Categoria categoria)
         {
             try
